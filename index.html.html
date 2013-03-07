@@ -1,0 +1,171 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Luigi's Pizza Mobile Training</title> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="themes/android-holo-light.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile.structure-1.1.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+		<script type="text/javascript">
+		var usrName="blank";
+		$(document).on('pageinit', '#Welcome', function(){
+			// Stuff to do as soon as the DOM is ready;
+			$("#txtUsrName").focus(function(){
+				$(this).removeClass("ui-focus-error");
+			})
+			$('#name').click(function() {
+				if (txtUsrName.value!=""){
+					usrName=txtUsrName.value;
+					console.log(usrName)
+					$.mobile.changePage($("#page1"))
+				}
+				else{
+					$('#txtUsrName').addClass("ui-focus-error")
+				}
+			});
+		});
+		$(document).on('pageinit', '#page1', function(){
+			$("#helloUser").append(usrName+".");
+		});
+		</script>
+</head> 
+<body> 
+<div data-role="page" id="Welcome">
+
+	<div class="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
+		<!--<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back ">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text"> Back </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
+			</span>
+		</a>-->
+		<a class="ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="grid" title=" Navigation ">
+			<span class="ui-btn-inner">
+				<span class="ui-btn-text"> Menu </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-grid"></span>
+			</span>
+		</a>
+	</div>
+
+	<div data-role="content">
+		<h2>Welcome to Luigi's Pizzeria.</h2>
+		<div style="height:230px;"><img src="themes/images/pizza1.png" class="center pizza1"></div>
+
+		<p class="secondary">Please enter your name below</p>
+		<input type="text" class="input required" data-form="ui-body-a" id="txtUsrName" placeholder="Name"/>
+		<button data-theme="b" data-form="ui-btn-up-b" id="name">Enter</button>
+	</div><!-- /content -->
+</div><!-- /page -->
+<div data-role="page" id="page1">
+
+	<div class="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
+		<!--<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text"> Back </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
+			</span>
+		</a>
+		<a class="ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="grid" title=" Navigation ">
+			<span class="ui-btn-inner">
+				<span class="ui-btn-text"> Menu </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-grid"></span>
+			</span>
+		</a>-->
+	</div>
+
+	<div data-role="content">
+		<img src="themes/images/pizzaheader.jpg">
+		<h2 id="helloUser">Hello </h2>
+		<p>Luigi's Pizzeria is committed to making the best quality pizzas possible. This app will train you in how to make a Luigi's certified pizza in just a few minutes. Don't worry, there's nothing in here that is scary. Plus, at the end you get to eat your pizza!</p>
+		<ul data-role="listview" data-divider-theme="a" data-inset="true" data-shadow="false">
+            <li data-role="list-divider" role="heading">
+                Pizza Fundamentals
+            </li>
+            <li data-theme="c" data-icon="false">
+                <a href="#">
+                    Rolling the dough<br>
+                    <small>Making a good dough is important to ensure a solid foundation for your pizza.</small>
+                </a>
+            </li>
+            <li data-theme="c" data-icon="false">
+                <a href="#">
+                    Getting saucy<br>
+                    <small>Tomato or BBQ? A question for the ages. Find out how to make the perfect sauce.</small>
+                </a>
+            </li>
+            <li data-theme="c" data-icon="false">
+                <a href="#">
+                    Topping it off<br>
+                    <small>Who puts marshmallow on their pizzas? We do! Learn more about our toppings, ancient and modern.</small>
+                </a>
+            </li>
+            <li data-theme="c" data-icon="false">
+                <a href="#">
+                    Finishing touches<br>
+                    <small>Cook it good and send us a photo.</small>
+                </a>
+                <a class="ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-btn-up-a ui-btn-big" data-iconpos="notext" data-theme="a" data-role="button" data-icon="star" title="Camera" data-corners="false" data-shadow="false" data-iconshadow="false" id="camera">
+					<span class="ui-btn-inner" data-corners="false" data-shadow="false" data-iconshadow="false">
+						<span class="ui-btn-text">Camera</span>
+						<span data-form="ui-icon" class="ui-icon ui-icon-star" data-corners="false" data-shadow="false" data-iconshadow="false"></span>
+					</span>
+				</a>
+            </li>
+        </ul>
+	</div><!-- /content -->
+</div><!-- /page -->
+<div data-role="page" id="page2">
+	<div class="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
+		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back">
+			<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text"> Back </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
+			</span>
+		</a>
+		<a class="ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="grid" title=" Navigation ">
+			<span class="ui-btn-inner">
+				<span class="ui-btn-text"> Menu </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-grid"></span>
+			</span>
+		</a>
+	</div>
+	
+	<div class="ui-content ui-body-a" data-theme="a" data-form="ui-body-a" data-role="content" role="main">
+	
+		<p>
+			Sample text and <a class="ui-link" data-form="ui-body-a" href="#" data-theme="a">links</a>.
+		</p>
+		
+		<div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup">
+			<li data-swatch="a" class="ui-li ui-li-divider ui-btn ui-bar-a ui-corner-top" data-role="list-divider" role="" data-form="ui-bar-a">List Header</li>
+		
+				<input type="radio" name="radio-choice-a" id="radio-choice-1-a" value="choice-1" checked="checked" />
+		        <label for="radio-choice-1-a" data-form="ui-btn-up-a" class="ui-corner-none">Radio 1</label>
+
+         		<input type="radio" name="radio-choice-a" id="radio-choice-2-a" value="choice-2" />
+	         	<label for="radio-choice-2-a" data-form="ui-btn-up-a">Radio 2</label>
+
+				<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" checked="checked" />
+				<label for="checkbox-1" data-form="ui-btn-up-a">Checkbox</label>
+					
+		    </fieldset>
+		</div>
+		
+		<div data-role="fieldcontain">
+			<select name="select-choice-1" id="select-choice-1" data-native-menu="false" data-theme="a" data-form="ui-btn-up-a">
+				<option value="standard">Option 1</option>
+				<option value="rush">Option 2</option>
+				<option value="express">Option 3</option>
+				<option value="overnight">Option 4</option>
+			</select>
+		</div>
+		
+		<input type="text" value="Text Input" class="input" data-form="ui-body-a" />
+		<button data-theme="a" data-form="ui-btn-up-a">Button</button>
+	</div>
+</div>
+</body>
+</html>

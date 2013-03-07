@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        id        = "uk.co.paulgrantdesign.luigi"
+        version   = "0.1">
+    <name>Luigi's Pizzeria</name>
+
+    <description>
+        Project02
+    </description>
+
+    <author href="paulgrantdesign.co.uk" email="itspaulgrant@gmail.com">
+        Paul Grant
+    </author>
+
+    <preference name="android-targetSdkVersion" value="11" />
+</widget>
