@@ -10,6 +10,17 @@
 		<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
 		<script type="text/javascript">
 		var usrName="blank";
+		var basecomplete=true;
+		var saucecomplete=true;
+		var topcomplete=false;
+		var cameracomplete=false;
+		function onDeviceReady() {
+        	document.addEventListener("backbutton", backKeyDown, true);
+	    }
+
+	    function backKeyDown() {
+	        navigator.app.exitApp();
+	    }
 		$(document).on('pageinit', '#Welcome', function(){
 			// Stuff to do as soon as the DOM is ready;
 			$("#txtUsrName").focus(function(){
@@ -28,6 +39,23 @@
 		});
 		$(document).on('pageinit', '#page1', function(){
 			$("#helloUser").append(usrName+".");
+			$('#camera').addClass('ui-disabled');
+			checkComplete();
+			if (basecomplete){
+				$("#base span.ui-icon").addClass("ui-icon-arrow-r").removeClass("ui-icon-delete")
+			}
+			if (saucecomplete){
+				$("#sauce span.ui-icon").addClass("ui-icon-arrow-r").removeClass("ui-icon-delete")
+			}
+			if (topcomplete){
+				$("#topping span.ui-icon").addClass("ui-icon-arrow-r").removeClass("ui-icon-delete")
+			}
+			if (cameracomplete){
+				$("#camera span.ui-icon").addClass("ui-icon-arrow-r").removeClass("ui-icon-alert")
+			}
+			function checkComplete(){
+				if (saucecomplete&basecomplete&topcomplete){$('#camera').removeClass('ui-disabled');}
+			};
 		});
 		</script>
 </head> 
@@ -77,34 +105,29 @@
             <li data-role="list-divider" role="heading">
                 Pizza Fundamentals
             </li>
-            <li data-theme="c" data-icon="false">
+            <li data-theme="c" data-icon="delete" class="steps" id="base">
                 <a href="#">
                     Rolling the dough<br>
                     <small>Making a good dough is important to ensure a solid foundation for your pizza.</small>
                 </a>
             </li>
-            <li data-theme="c" data-icon="false">
+            <li data-theme="c" data-icon="delete" class="steps" id="sauce">
                 <a href="#">
                     Getting saucy<br>
                     <small>Tomato or BBQ? A question for the ages. Find out how to make the perfect sauce.</small>
                 </a>
             </li>
-            <li data-theme="c" data-icon="false">
+            <li data-theme="c" data-icon="delete" class="steps" id="topping">
                 <a href="#">
                     Topping it off<br>
                     <small>Who puts marshmallow on their pizzas? We do! Learn more about our toppings, ancient and modern.</small>
                 </a>
             </li>
-            <li data-theme="c" data-icon="false">
-                <a href="#">
+            <li data-theme="c" data-icon="star" id="camera">
+                <a href="#" id="finish">
                     Finishing touches<br>
                     <small>Cook it good and send us a photo.</small>
-                </a>
-                <a class="ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-btn-up-a ui-btn-big" data-iconpos="notext" data-theme="a" data-role="button" data-icon="star" title="Camera" data-corners="false" data-shadow="false" data-iconshadow="false" id="camera">
-					<span class="ui-btn-inner" data-corners="false" data-shadow="false" data-iconshadow="false">
-						<span class="ui-btn-text">Camera</span>
-						<span data-form="ui-icon" class="ui-icon ui-icon-star" data-corners="false" data-shadow="false" data-iconshadow="false"></span>
-					</span>
+
 				</a>
             </li>
         </ul>
