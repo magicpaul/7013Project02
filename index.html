@@ -17,10 +17,8 @@
 		var saucecomplete=false;
 		var topcomplete=false;
 		var cameracomplete=false;
-		function onLoad() {
-       		document.addEventListener("deviceready", onDeviceReady, false);
-    	}
-		function onDeviceReady() {
+		document.addEventListener("deviceready", onDeviceReady, false);
+    	function onDeviceReady() {
         	document.addEventListener("backbutton", backKeyDown, true);
 	    }
 
@@ -70,7 +68,7 @@
 			var elem = document.getElementById('mySwipe1');
 			window.mySwipe = Swipe(elem, {
 			  // startSlide: 4,
-			   auto: 3000,
+			  // auto: 3000,
 			  // continuous: true,
 			  // disableScroll: true,
 			  // stopPropagation: true,
