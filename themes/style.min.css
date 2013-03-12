@@ -132,12 +132,12 @@ body {
 }
 
 .ui-btn-hover-b{
-        border: 1px solid #4bbde8 ;
+    border: 1px solid #4bbde8 ;
     background: #A6DAED;
     color: #333333 ;
     text-shadow: 0  1px  1px  #ffffff ;
     font-size: 18px;
-
+	text-decoration:none;
 }
     
 .ui-btn-down-b{
@@ -473,6 +473,9 @@ a.ui-link-inherit {
     outline-width: 1px;
     outline-style: dotted;
 }
+.ui-btn-noborder{
+	border-bottom:0!important;	
+}
 #switch input[type=radio],#switch span.ui-icon{display: none;}
 #switch{height:24px;}
 .ui-popup-hidden{display: none;}
@@ -530,3 +533,4 @@ img.center.pizza1{max-width: 100%; margin: 0 auto; position: absolute; left: 50%
 .slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
 html[xmlns] .slides {display: block;} 
 * html .slides {height: 1%;}
+.flexslider .slides p{padding:5px; text-align:justify;}
