@@ -8,11 +8,11 @@
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile.structure-1.1.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
-		<script type="text/javascript" src="jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="jquery.flexslider-min.js"></script>
 		<script type="text/javascript">
 		var usrName="blank";
-		var basecomplete=true;
-		var saucecomplete=true;
+		var basecomplete=false;
+		var saucecomplete=false;
 		var topcomplete=false;
 		var cameracomplete=false;
 		function onDeviceReady() {
@@ -39,7 +39,10 @@
 			});
 		});
 		$(document).on('pageinit', '#page1', function(){
-			$("#helloUser").append(usrName+".");
+			$("#helloUser").append("Hello "+usrName+".");
+		});
+		$('#page1').live('pageshow', function(){
+			
 			$('#camera').addClass('ui-disabled');
 			checkComplete();
 			if (basecomplete){
@@ -56,10 +59,14 @@
 			}
 			function checkComplete(){
 				if (saucecomplete&basecomplete&topcomplete){$('#camera').removeClass('ui-disabled');}
-			};
+			};	
 		});
-		$(document).on('pageinit', '#page2', function(){
+		$('#page2').live('pageshow', function(){
 			$('.flexslider').flexslider({animation:"slide",animationLoop:false,startAt: 0,slideshow:false,controlNav: false,directionNav: false});
+			$("#baseComplete").click(function(){
+				basecomplete=true;
+				console.log(basecomplete);
+			});
 		});
 		</script>
 </head> 
@@ -103,14 +110,14 @@
 
 	<div data-role="content">
 		<img src="themes/images/pizzaheader.jpg">
-		<h2 id="helloUser">Hello </h2>
+		<h2 id="helloUser"></h2>
 		<p>Luigi's Pizzeria is committed to making the best quality pizzas possible. This app will train you in how to make a Luigi's certified pizza in just a few minutes. Don't worry, there's nothing in here that is scary. Plus, at the end you get to eat your pizza!</p>
 		<ul data-role="listview" data-divider-theme="a" data-inset="true" data-shadow="false">
             <li data-role="list-divider" role="heading">
                 Pizza Fundamentals
             </li>
             <li data-theme="c" data-icon="delete" class="steps" id="base">
-                <a href="#page2">
+                <a href="#page2" rel="external">
                     Rolling the dough<br>
                     <small>Making a good dough is important to ensure a solid foundation for your pizza.</small>
                 </a>
@@ -138,9 +145,9 @@
 	</div><!-- /content -->
 </div><!-- /page -->
 <div data-role="page" id="page2">
-	<div class="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
-		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back" style="width:250px;">
-			<span class="ui-btn-inner ui-btn-corner-all">
+	<div class="ui-header ui-bar-a ui-btn-noborder" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
+		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-btn-up-a ui-btn-noborder" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back" style="width:250px;">
+			<span class="ui-btn-inner ui-btn-corner-all ui-btn-noborder">
 				<span class="ui-btn-text"> Back </span>
 				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
 			</span>
@@ -153,6 +160,7 @@
 		    <li>
 		    	<img src="images/dough/1.jpg">
 		      	<p>Make the dough: mix the flour, yeast and salt together in a large mixing bowl and stir in the olive oil and milk. Gradually add the water, mixing well to form a soft dough.</p>
+                <a href="#page1" data-role="button" rel="external" data-theme="b" class="ui-btn-up-b" id="baseComplete">Complete!</a>
 		    </li>
 		    <li>
 		    	<img src="images/dough/2.jpg">
