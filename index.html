@@ -4,10 +4,11 @@
 <title>Luigi's Pizza Mobile Training</title> 
 
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<link rel="stylesheet" href="themes/android-holo-light.min.css" />
+		<link rel="stylesheet" href="themes/style.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile.structure-1.1.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+		<script type="text/javascript" src="jquery.flexslider-min.js"></script>
 		<script type="text/javascript">
 		var usrName="blank";
 		var basecomplete=true;
@@ -56,6 +57,9 @@
 			function checkComplete(){
 				if (saucecomplete&basecomplete&topcomplete){$('#camera').removeClass('ui-disabled');}
 			};
+		});
+		$(document).on('pageinit', '#page2', function(){
+			$('.flexslider').flexslider({animation:"slide",animationLoop:false,startAt: 0,slideshow:false,controlNav: false,directionNav: false});
 		});
 		</script>
 </head> 
@@ -106,7 +110,7 @@
                 Pizza Fundamentals
             </li>
             <li data-theme="c" data-icon="delete" class="steps" id="base">
-                <a href="#">
+                <a href="#page2">
                     Rolling the dough<br>
                     <small>Making a good dough is important to ensure a solid foundation for your pizza.</small>
                 </a>
@@ -135,54 +139,31 @@
 </div><!-- /page -->
 <div data-role="page" id="page2">
 	<div class="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
-		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back">
+		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back" style="width:250px;">
 			<span class="ui-btn-inner ui-btn-corner-all">
 				<span class="ui-btn-text"> Back </span>
 				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
 			</span>
 		</a>
-		<a class="ui-btn-right ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-up-a" data-iconpos="notext" data-theme="a" data-role="button" data-icon="grid" title=" Navigation ">
-			<span class="ui-btn-inner">
-				<span class="ui-btn-text"> Menu </span>
-				<span data-form="ui-icon" class="ui-icon ui-icon-grid"></span>
-			</span>
-		</a>
 	</div>
 	
 	<div class="ui-content ui-body-a" data-theme="a" data-form="ui-body-a" data-role="content" role="main">
-	
-		<p>
-			Sample text and <a class="ui-link" data-form="ui-body-a" href="#" data-theme="a">links</a>.
-		</p>
-		
-		<div data-role="fieldcontain">
-		    <fieldset data-role="controlgroup">
-			<li data-swatch="a" class="ui-li ui-li-divider ui-btn ui-bar-a ui-corner-top" data-role="list-divider" role="" data-form="ui-bar-a">List Header</li>
-		
-				<input type="radio" name="radio-choice-a" id="radio-choice-1-a" value="choice-1" checked="checked" />
-		        <label for="radio-choice-1-a" data-form="ui-btn-up-a" class="ui-corner-none">Radio 1</label>
-
-         		<input type="radio" name="radio-choice-a" id="radio-choice-2-a" value="choice-2" />
-	         	<label for="radio-choice-2-a" data-form="ui-btn-up-a">Radio 2</label>
-
-				<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" checked="checked" />
-				<label for="checkbox-1" data-form="ui-btn-up-a">Checkbox</label>
-					
-		    </fieldset>
+		<div class="flexslider">
+		  <ul class="slides">
+		    <li>
+		    	<img src="images/dough/1.jpg">
+		      	<p>Make the dough: mix the flour, yeast and salt together in a large mixing bowl and stir in the olive oil and milk. Gradually add the water, mixing well to form a soft dough.</p>
+		    </li>
+		    <li>
+		    	<img src="images/dough/2.jpg">
+		    	<p>Turn the dough out on to a floured work surface and knead for about five minutes, until smooth and elastic. Transfer to a clean bowl, cover with a damp tea towel and leave to rise for about 1½ hours, until doubled in size.</p>
+		    </li>
+		  </ul>
 		</div>
-		
-		<div data-role="fieldcontain">
-			<select name="select-choice-1" id="select-choice-1" data-native-menu="false" data-theme="a" data-form="ui-btn-up-a">
-				<option value="standard">Option 1</option>
-				<option value="rush">Option 2</option>
-				<option value="express">Option 3</option>
-				<option value="overnight">Option 4</option>
-			</select>
-		</div>
-		
-		<input type="text" value="Text Input" class="input" data-form="ui-body-a" />
-		<button data-theme="a" data-form="ui-btn-up-a">Button</button>
 	</div>
 </div>
+<script type="text/javascript">
+	
+</script>
 </body>
 </html>
