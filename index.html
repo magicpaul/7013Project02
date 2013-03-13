@@ -11,6 +11,7 @@
 		<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
         <script type="text/javascript" src="jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="swipe.js"></script>
+        <script type="text/javascript" src="www/EmailComposer.js"></script>
 		<script type="text/javascript">
 		var usrName="blank";
 		var basecomplete=false;
@@ -40,6 +41,9 @@
 					$('#txtUsrName').addClass("ui-focus-error")
 				}
 			});
+			$('#email').click(function(){
+				window.plugins.emailComposer.showEmailComposer("hello","there",['itspaulgrant@gmail.com'],[],[],false,null);
+			});
 		});
 		$(document).on('pageinit', '#page1', function(){
 			$("#helloUser").append("Hello "+usrName+".");
@@ -68,7 +72,7 @@
 			var elem = document.getElementById('mySwipe1');
 			window.mySwipe = Swipe(elem, {
 			  // startSlide: 4,
-			  // auto: 3000,
+			   auto: 1000,
 			  // continuous: true,
 			  // disableScroll: true,
 			  // stopPropagation: true,
@@ -102,6 +106,7 @@
 		<p class="secondary">Please enter your name below</p>
 		<input type="text" class="input required" data-form="ui-body-a" id="txtUsrName" placeholder="Name"/>
 		<button data-theme="b" data-form="ui-btn-up-b" id="name">Enter</button>
+		<button data-theme="b" data-form="ui-btn-ui-b" id="email">Email Test</button>
 	</div><!-- /content -->
 </div><!-- /page -->
 <div data-role="page" id="page1">
@@ -167,17 +172,47 @@
 		</a>
 	</div>
 	
-	<div class="ui-content ui-body-a" data-theme="a" data-form="ui-body-a" data-role="content" role="main">
+	<div class="ui-content ui-body-c" data-theme="c" data-form="ui-body-a" data-role="content" role="main">
 		<div id="mySwipe1" class="swipe">
 		  <div class="swipe-wrap">
+		  	<div>
+		  		<img src="images/dough/0.jpg">
+		    	<h3>Making the dough</h3>
+		      	<ul>
+		      		<li>650g/1lb 5oz Italian 00 flour (strong white flour)</li>
+		      		<li>7g sachet of easy-blend yeast</li>
+		      		<li>2 tsp salt</li>
+		      		<li>25ml/1fl oz olive oil</li>
+		      		<li>50ml/2fl oz warm milk</li>
+		      		<li>325ml/11fl oz warm water</li>
+		      	</ul>
+		      	<em>Swipe left to see instructions</em>
+		    </div>
 		    <div>
 		    	<img src="images/dough/1.jpg">
-		      	<p>Make the dough: mix the flour, yeast and salt together in a large mixing bowl and stir in the olive oil and milk. Gradually add the water, mixing well to form a soft dough.</p>
-                <a href="#page1" data-role="button" rel="external" data-theme="b" class="ui-btn-up-b" id="baseComplete">Complete!</a>
+		    	<h3>Make the dough</h3>
+		      	<p>Mix the flour, yeast and salt together in a large mixing bowl and stir in the olive oil and milk. Gradually add the water, mixing well to form a soft dough.</p>
 		    </div>
 		    <div>
 		    	<img src="images/dough/2.jpg">
-		    	<p>Turn the dough out on to a floured work surface and knead for about five minutes, until smooth and elastic. Transfer to a clean bowl, cover with a damp tea towel and leave to rise for about 1½ hours, until doubled in size.</p>
+		    	<h3>Knead it good</h3>
+		    	<p>Turn the dough out on to a floured work surface and knead for about five minutes, until smooth and elastic. Transfer to a clean bowl, cover with a damp tea towel and leave to rise for about 1 1/2 hours, until doubled in size.</p>
+		    </div>
+		    <div>
+		    	<img src="images/dough/3.jpg">
+		    	<h3>Leave it to prove</h3>
+		    	<p>When the dough has risen, knock it back, then knead again until smooth, roll into a ball and set aside for 30 minutes to 1 hour until risen again.</p>
+		    </div>
+		    <div>
+		    	<img src="images/dough/4.jpg">
+		    	<h3>Roll it out</h3>
+		    	<p>Preheat the oven to its highest setting. Divide the dough into balls and roll each out onto a lightly floured work surface until 20cm/8in in diameter.</p>
+		    </div>
+		    <div>
+		    	<img src="images/dough/5.jpg">
+		    	<h3>Well done!</h3>
+		    	<p>You've made your first Luigi's dough! Click below to complete the course and return to the menu.</p>
+		    	<a href="#page1" data-role="button" rel="external" data-theme="b" class="ui-btn-up-b" id="baseComplete" style="width:60%; margin:auto;">Complete!</a>
 		    </div>
 		  </div>
 		</div>
