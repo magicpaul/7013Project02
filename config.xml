@@ -11,7 +11,4 @@
     <author href="paulgrantdesign.co.uk" email="itspaulgrant@gmail.com">
         Paul Grant
     </author>
-
-    <preference name="android-targetSdkVersion" value="14" />
-    <gap:plugin name="EmailComposer" />
 </widget>
