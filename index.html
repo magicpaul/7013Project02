@@ -2,7 +2,7 @@
 <html> 
 <head> 
 <title>Luigi's Pizza Mobile Training</title> 
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<link rel="stylesheet" href="themes/style.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile.structure-1.1.0.min.css" />
@@ -71,7 +71,7 @@
 		$('#page2').live('pageshow', function(){
 			var elem = document.getElementById('mySwipe1');
 			window.mySwipe = Swipe(elem, {
-			  // startSlide: 4,
+			   startSlide: 0,
 			  // auto: 2000, 
 			  // continuous: true,
 			  // disableScroll: true,
@@ -81,9 +81,166 @@
 			});
 			$("#baseComplete").click(function(){
 				basecomplete=true;
-				console.log(basecomplete);
 			});
 		});
+		$('#page3').live('pageshow', function(){
+			var elem = document.getElementById('mySwipe2');
+			window.mySwipe2 = Swipe(elem, {
+			   startSlide: 0,
+			  // auto: 2000, 
+			  // continuous: true,
+			  // disableScroll: true,
+			  // stopPropagation: true,
+			  // callback: function(index, element) {},
+			  // transitionEnd: function(index, element) {}
+			});
+			$("#sauceComplete").click(function(){
+				saucecomplete=true;
+			});
+		});
+		$('#page4').live('pageshow', function(){
+			var elem = document.getElementById('mySwipe3');
+			window.mySwipe3 = Swipe(elem, {
+			   startSlide: 0,
+			  // auto: 2000, 
+			  // continuous: true,
+			  // disableScroll: true,
+			  // stopPropagation: true,
+			  // callback: function(index, element) {},
+			  // transitionEnd: function(index, element) {}
+			});
+			$("#topComplete").click(function(){
+				topcomplete=true;
+			});
+		});
+		$('#page5').live('pageshow',function(){
+			var pizzaimage = localStorage.getItem('samplePizza');
+				
+				if  (pizzaimage  == null) {
+						localStorage.setItem("samplePizza", "images/top/1.jpg");	
+					}
+
+		
+				var smallImage = document.getElementById('smallImage');
+				  // Unhide image elements
+				  //
+				  smallImage.style.display = 'block';
+				  
+				  
+
+				  // Show the captured photo
+				  // The inline CSS rules are used to resize the image
+				  //
+				  m_image = localStorage.getItem('samplePizza');
+				  smallImage.src = m_image;
+
+			});
+
+	        
+
+	        
+       		/*var pictureSource, 
+			destinationType 
+			document.addEventListener("deviceready",loaded,false);*/
+			var pictureSource;   // picture source
+			var destinationType; // sets the format of returned value 
+
+			// Wait for Cordova to connect with the device
+		
+			
+			document.addEventListener("deviceready",onDeviceReady,false);
+			
+			
+			
+			// Cordova is ready to be used!
+			function onDeviceReady() {
+				pictureSource=navigator.camera.PictureSourceType;
+				destinationType=navigator.camera.DestinationType;
+				debug.log('Device Ready');
+			}
+			
+			
+			function onPhotoDataSuccess(imageData) {
+				  // Uncomment to view the base64 encoded image data
+				  // console.log(imageData);
+
+				  // Get image handle
+				  //
+				  
+				  
+				  
+				  var smallImage = document.getElementById('smallImage');
+
+				  // Unhide image elements
+				  //
+				  smallImage.style.display = 'block';
+				  
+				  
+
+				  // Show the captured photo
+				  // The inline CSS rules are used to resize the image
+				  //
+				  //smallImage.src = "data:image/jpeg;base64," + imageData;
+				 // debug.log('Photo Successfully Captured: ' + imageData);
+				  
+					
+				//use localstorage address to store address
+					
+				  imageaddress = "data:image/jpeg;base64," + imageData;
+				  
+				  localStorage.setItem("samplePizza", imageaddress);
+
+				  //display address					
+				  m_image = localStorage.getItem("samplePizza");
+				  smallImage.src = m_image;
+
+			}
+			
+			
+			// Called when a photo is successfully retrieved
+		    //
+		    function onPhotoURISuccess(imageURI) {
+		      // Uncomment to view the image file URI 
+		      // console.log(imageURI);
+		
+		      // Get image handle
+		      //
+		      var smallImage = document.getElementById('smallImage');
+		
+		      // Unhide image elements
+		      //
+		      smallImage.style.display = 'block';
+		
+		      // Show the captured photo
+		      // The inline CSS rules are used to resize the image
+		      //
+		      smallImage.src = imageURI;
+		    }
+
+			
+			
+			  // A button will call this function
+				//
+				function capturePhoto() {
+				  // Take picture using device camera and retrieve image as base64-encoded string
+				  navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+					destinationType: destinationType.DATA_URL });
+				}
+				
+				
+				function getPhoto(source) {
+      				// Retrieve image file location from specified source
+      				navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+       				 destinationType: destinationType.FILE_URI,
+        			sourceType: source });
+    			}
+
+				
+			    // Called if something bad happens.
+				// 
+				function onFail(message) {
+				  alert('Failed because: ' + message);
+				}
 		</script>
 
 </head> 
@@ -101,7 +258,7 @@
 
 	<div data-role="content">
 		<h2>Welcome to Luigi's Pizzeria.</h2>
-		<div style="height:230px;"><img src="themes/images/pizza1.png" class="center pizza1"></div>
+		<div style="height:230px;"><img src="images/pizza1.png" class="center pizza1"></div>
 
 		<p class="secondary">Please enter your name below</p>
 		<input type="text" class="input required" data-form="ui-body-a" id="txtUsrName" placeholder="Name"/>
@@ -141,19 +298,19 @@
                 </a>
             </li>
             <li data-theme="c" data-icon="delete" class="steps" id="sauce">
-                <a href="#">
+                <a href="#page3">
                     Getting saucy<br>
                     <small>Tomato or BBQ? A question for the ages. Find out how to make the perfect sauce.</small>
                 </a>
             </li>
             <li data-theme="c" data-icon="delete" class="steps" id="topping">
-                <a href="#">
+                <a href="#page4">
                     Topping it off<br>
                     <small>Who puts marshmallow on their pizzas? We do! Learn more about our toppings, ancient and modern.</small>
                 </a>
             </li>
             <li data-theme="c" data-icon="star" id="camera">
-                <a href="#" id="finish">
+                <a href="#page5" id="finish">
                     Finishing touches<br>
                     <small>Cook it good and send us a photo.</small>
 
@@ -186,11 +343,11 @@
 		      		<li>50ml/2fl oz warm milk</li>
 		      		<li>325ml/11fl oz warm water</li>
 		      	</ul>
-		      	<em>Swipe left to see instructions</em>
+		      	<em>Swipe to see instructions</em>
 		    </div>
 		    <div>
 		    	<img src="images/dough/1.jpg">
-		    	<h3>Make the dough</h3>
+		    	<h3>Mix it up</h3>
 		      	<p>Mix the flour, yeast and salt together in a large mixing bowl and stir in the olive oil and milk. Gradually add the water, mixing well to form a soft dough.</p>
 		    </div>
 		    <div>
@@ -218,5 +375,172 @@
 		</div>
 	</div>
 </div>
+<div data-role="page" id="page3">
+	<div class="ui-header ui-bar-a ui-btn-noborder" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
+		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-btn-up-a ui-btn-noborder" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back" style="width:250px;">
+			<span class="ui-btn-inner ui-btn-corner-all ui-btn-noborder">
+				<span class="ui-btn-text"> Back </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
+			</span>
+		</a>
+	</div>
+	
+	<div class="ui-content ui-body-c" data-theme="c" data-form="ui-body-a" data-role="content" role="main">
+		<div id="mySwipe2" class="swipe">
+		  <div class="swipe-wrap">
+		  	<div>
+		  		<img src="images/sauce/0.jpg">
+		    	<h3>Making the sauce</h3>
+		      	<ul>
+		      		<li>4 tablespoons olive oil</li>
+					<li>1 onion, minced</li>
+					<li>2 cloves garlic, minced</li>
+					<li>2 tablespoons dried oregano</li>
+					<li>350g (12 oz) tomato purée</li>
+					<li>1 (700g) jar passata</li>
+		      	</ul>
+		      	<em>Swipe to see instructions</em>
+		    </div>
+		    <div>
+		    	<img src="images/sauce/1.jpg">
+		    	<h3>Turn up the heat</h3>
+		      	<p>Heat oil in a medium saucepan over medium heat.</p>
+		    </div>
+		    <div>
+		    	<img src="images/sauce/2.jpg">
+		    	<h3>Fry time</h3>
+		    	<p>Sauté onion, garlic and oregano until clear.</p>
+		    </div>
+		    <div>
+		    	<img src="images/sauce/3.jpg">
+		    	<h3>Sauce it to me</h3>
+		    	<p>Stir in tomato purée and passata; reduce heat to low and simmer for 15 minutes.</p>
+		    </div>
+		    <div>
+		    	<img src="images/sauce/4.jpg">
+		    	<h3>Spread it</h3>
+		    	<p>Let cool and spread over prepared pizza base.</p>
+		    </div>
+		    <div>
+		    	<img src="images/dough/5.jpg">
+		    	<h3>Well done!</h3>
+		    	<p>You've made your first Luigi's sauce! Click below to complete the course and return to the menu.</p>
+		    	<a href="#page1" data-role="button" rel="external" data-theme="b" class="ui-btn-up-b" id="sauceComplete" style="width:60%; margin:auto;">Complete!</a>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+<div data-role="page" id="page4">
+	<div class="ui-header ui-bar-a ui-btn-noborder" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner">
+		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-btn-up-a ui-btn-noborder" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back" style="width:250px;">
+			<span class="ui-btn-inner ui-btn-corner-all ui-btn-noborder">
+				<span class="ui-btn-text"> Back </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
+			</span>
+		</a>
+	</div>
+	
+	<div class="ui-content ui-body-c" data-theme="c" data-form="ui-body-a" data-role="content" role="main">
+		<div id="mySwipe3" class="swipe">
+		  <div class="swipe-wrap">
+		  	<div>
+		  		<img src="images/top/0.jpg">
+		    	<h3>Toppings</h3>
+		    	<p>Pizza is such a versitile meal because you can put so many different things on it. Everyone has their favourite, but here is the recipe for some of our most popular orders.</p>
+		      	<em>Swipe to see instructions</em>
+		    </div>
+		    <div>
+		    	<img src="images/top/1.jpg">
+		    	<h3>Margherita</h3>
+		      	<p>A classic. Nice and simple, but don't get fooled, a good margherita is still bursting with flavour.</p>
+		      	<ul>
+		      		<li>Chopped Tomatoes</li>
+		      		<li>Mozzarella cheese</li>
+		      		<li>Olive Oil</li>
+		      		<li>Basil</li>
+		      	</ul>
+		    </div>
+		    <div>
+		    	<img src="images/top/2.jpg">
+		    	<h3>Prosciutto</h3>
+		    	<p>Nothing too complicated. Just some finely smoked, quality Italian ham.</p>
+		    	<ul>
+		    		<li>Chopped Tomatoes</li>
+		      		<li>Mozzarella cheese</li>
+		      		<li>Finely smoked, quality Italian ham.</li>
+		      		<li>Olive Oil</li>
+		      		<li>Basil</li>
+		    	</ul>
+		    </div>
+		    <div>
+		    	<img src="images/top/3.jpg">
+		    	<h3>Pepperoni</h3>
+		    	<p>The world's most popular pizza topping!</p>
+		    	<ul>	
+		    		<li>Chopped Tomatoes</li>
+		      		<li>Mozzarella cheese</li>
+		      		<li>Pepperoni</li>
+		      		<li>Olive Oil</li>
+		      		<li>Basil</li>
+		      	</ul>
+		    </div>
+		    <div>
+		    	<img src="images/top/4.jpg">
+		    	<h3>Hawaiian</h3>
+		    	<p>Pineapple: love it or hate it, people order it.</p>
+		    	<ul>	
+		    		<li>Chopped Tomatoes</li>
+		      		<li>Mozzarella cheese</li>
+		      		<li>Ham</li>
+		      		<li>Pineapple</li>
+		      		<li>Olive Oil</li>
+		      		<li>Basil</li>
+		      	</ul>
+		    </div>
+		    <div>
+		    	<img src="images/top/5.jpg">
+		    	<h3>Quattro Formaggi</h3>
+		    	<p>Why have one type of cheese when you can have four?</p>
+		    	<ul>	
+		    		<li>Chopped Tomatoes</li>
+		      		<li>Mozzarella cheese</li>
+		      		<li>Stracchino cheese</li>
+		      		<li>Fontina cheese</li>
+		      		<li>Gorgonzola cheese</li>
+		      		<li>Olive Oil</li>
+		      		<li>Basil</li>
+		      	</ul>
+		    </div>
+		    <div>
+		    	<img src="images/dough/5.jpg">
+		    	<h3>Well done!</h3>
+		    	<p>Know you know the secrets of our most popular pizza toppings! Click below to complete the course and return to the menu.</p>
+		    	<a href="#page1" data-role="button" rel="external" data-theme="b" class="ui-btn-up-b" id="topComplete" style="width:60%; margin:auto;">Complete!</a>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+<div data-role="page" id="page5">
+
+	<div class="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form="ui-bar-a" data-role="header" role="banner" data-position="fixed" data-tap-toggle="false">
+		<a class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-btn-up-a ui-btn-noborder" data-iconpos="notext" data-theme="a" data-role="button" data-icon="back" title=" Back " data-rel="back" style="width:250px;">
+			<span class="ui-btn-inner ui-btn-corner-all ui-btn-noborder">
+				<span class="ui-btn-text"> Back </span>
+				<span data-form="ui-icon" class="ui-icon ui-icon-back"></span>
+			</span>
+		</a>
+	</div>
+
+	<div data-role="content">
+		<h2>Time to bake that pizza</h2>
+		<img style="display:none;width:100%;" id="smallImage" src="" />
+		<p class="justify">Now that you have learned how to make a Luigi's Pizza, it's time to bake your own. Preheat your oven to the highest setting and cook it for 10 minutes.</p>
+		<p class="justify">When it's ready, take a picture and send it to us. You can eat your pizza, as long as your keep us a slice for "quality control" purposes.</p>
+		<a data-theme="b" data-role="button" data-form="ui-btn-up-b" id="camera" onClick="takePhoto();" style="float: left;width: 46%;">Take Picture</a>
+        <a data-theme="b" data-role="button" data-form="ui-btn-up-b" id="gallery" onClick="getPhoto();" style="float: left;width: 46%;">Gallery</a>
+	</div><!-- /content -->
+</div><!-- /page -->
 </body>
 </html>
