@@ -11,16 +11,20 @@
 		<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
         <script type="text/javascript" src="jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="swipe.js"></script>
-        <script type="text/javascript" src="www/EmailComposer.js"></script>
 		<script type="text/javascript">
 		var usrName="blank";
 		var basecomplete=false;
 		var saucecomplete=false;
 		var topcomplete=false;
 		var cameracomplete=false;
+		var pictureSource;   // picture source
+		var destinationType; // sets the format of returned value 
 		document.addEventListener("deviceready", onDeviceReady, false);
     	function onDeviceReady() {
         	document.addEventListener("backbutton", backKeyDown, true);
+        	pictureSource=navigator.camera.PictureSourceType;
+			destinationType=navigator.camera.DestinationType;
+			debug.log('Device Ready');
 	    }
 
 	    function backKeyDown() {
@@ -142,24 +146,7 @@
        		/*var pictureSource, 
 			destinationType 
 			document.addEventListener("deviceready",loaded,false);*/
-			var pictureSource;   // picture source
-			var destinationType; // sets the format of returned value 
-
-			// Wait for Cordova to connect with the device
-		
-			
-			document.addEventListener("deviceready",onDeviceReady,false);
-			
-			
-			
-			// Cordova is ready to be used!
-			function onDeviceReady() {
-				pictureSource=navigator.camera.PictureSourceType;
-				destinationType=navigator.camera.DestinationType;
-				debug.log('Device Ready');
-			}
-			
-			
+						
 			function onPhotoDataSuccess(imageData) {
 				  // Uncomment to view the base64 encoded image data
 				  // console.log(imageData);
@@ -538,8 +525,8 @@
 		<img style="display:none;width:100%;" id="smallImage" src="" />
 		<p class="justify">Now that you have learned how to make a Luigi's Pizza, it's time to bake your own. Preheat your oven to the highest setting and cook it for 10 minutes.</p>
 		<p class="justify">When it's ready, take a picture and send it to us. You can eat your pizza, as long as your keep us a slice for "quality control" purposes.</p>
-		<a data-theme="b" data-role="button" data-form="ui-btn-up-b" id="camera" onClick="takePhoto();" style="float: left;width: 46%;">Take Picture</a>
-        <a data-theme="b" data-role="button" data-form="ui-btn-up-b" id="gallery" onClick="getPhoto();" style="float: left;width: 46%;">Gallery</a>
+		<a data-theme="b" data-role="button" data-form="ui-btn-up-b" id="camera" onClick="capturePhoto();" style="float: left;width: 46%;">Take Picture</a>
+        <a data-theme="b" data-role="button" data-form="ui-btn-up-b" id="gallery" onClick="getPhoto(pictureSource.PHOTOLIBRARY);" style="float: left;width: 46%;">Gallery</a>
 	</div><!-- /content -->
 </div><!-- /page -->
 </body>
